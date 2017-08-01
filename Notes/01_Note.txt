@@ -1,0 +1,22 @@
+Modules: Where we write pieces of our AngularJS application
+This is not we keep our code encapsulated(i.e. maintanable, testable)
+
+var app = angular.module('store', []);
+
+Controller: Help us get data on to the page
+
+var gem = {
+	name:
+	price:
+}
+
+Controllers are where we define our apps behaviour by definig functions and values
+
+
+Directives - HTML annotoations that trigger javascript behaviour
+
+Modules - Where our application component live
+
+Controllers - Where we add application behaviour
+
+Expressions - How values get displayed within the page
