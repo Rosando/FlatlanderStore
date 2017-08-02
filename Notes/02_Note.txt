@@ -1,0 +1,37 @@
+Filters, More directives and keeping code clean:
+
+ng-app
+ng-controller
+ng-show/ng-hide
+ng-repeat
+
+Filters:
+
+product.price | currency
+
+pipe: send the ouput into 
+Note: it gives the dollar sign and specifies number of decimals
+
+Format the output of expression to currency
+
+
+Angular Recipe: {{ data* | filter:options* }}
+eg. date: {{'13881123412323'|date:'MM/dd/yyyy @ h:mma'}} -> 12/27/2013 @ 12:50am
+
+uppercase & lowercase: {{'octagon gem'|uppercase}} -> OCTAGON GEM
+
+limitTo: {{'My Description' | limitTo:8}} -> My Descr
+			or
+		<li ng-repeat="product in store.products | limitTo:3"> -> limit item in array output
+		
+orderBy: <li ng-repeat="product in store.products | orderBy:'-price'"> -> order by desc
+if orderBy:'price' -> order by asc
+
+
+product.images[0].full
+
+<img src="{{product.images[0].full}}" /> -> this will not work as the browser tries to load the image before the expression evaluates
+
+so we use
+
+<img ng-src="{{product.images[0].full}}" />

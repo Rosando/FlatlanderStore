@@ -13,7 +13,7 @@ var gem = {
 Controllers are where we define our apps behaviour by definig functions and values
 
 
-Directives - HTML annotoations that trigger javascript behaviour
+Directives - HTML annotations that trigger javascript behaviour
 
 Modules - Where our application component live
 

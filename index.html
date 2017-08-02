@@ -5,14 +5,66 @@
 		<meta charset="UTF-8" />
 		<link rel="stylesheet" type="text/css" href="content/css/bootstrap.css" />
 	</head>
-	<body class="container" ng-controller="StoreController as store"> <!-- Directive   ControllerName   Alias -->
-		<div ng-repeat="product in store.products" ng-hide="product.soldOut"> <!-- store.product[0].name --> <!-- access first array element name -->
-			<h1>{{product.name}}</h1>
-			<h2>${{product.price}}</h2>
-			<p>{{product.description}}</p>
+	<!-- Directive   ControllerName   Alias -->
+	<!-- store.product[0].name --> <!-- access first array element name -->
+	
+	<!-- normal code without bootstrap - level 1 -->
+	<!--
+		<body class="container" ng-controller="StoreController as store"> 
+			<div ng-repeat="product in store.products" ng-hide="product.soldOut"> 
+				<h1>{{product.name}}</h1>
+				<h2>${{product.price}}</h2>
+				<p>{{product.description}}</p>
+				
+				<button ng-show="product.canPurchase">Add to Cart</button>
+			</div>
 			
-			<button ng-show="product.canPurchase">Add to Cart</button>
-		</div>
+			<script type="text/javascript" src="scripts/angular.js"></script>
+			<script type="text/javascript" src="scripts/app.js"></script>
+		</body>
+	-->
+	
+	<!-- using bootstrap -->
+	<body ng-controller="StoreController as store">
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="product in store.products">
+				<h3>
+					{{product.name}}
+					<em class="pull-right">{{product.price | currency:"&#8377;"}}</em>
+				</h3>
+				<div class="gallery" ng-show="product.images.length" ng-controller="GalleryController as gallery"> <!-- ng-show="product.images.length" or ng-show="{{product.images.length}}" works -->
+					<img ng-src="{{product.images[gallery.current]}}" /> <!-- ng-src requires a expression -->
+				</div>
+				<!-- moved to panel controller -->
+				<!-- ng-init="tab = 1" -->
+				
+				<!-- add a function -->
+				<!-- ng-click="tab = 1" - ng-click="panel.selectTab(1)" -->
+				<!-- ng-show="tab === 1" - ng-show="panel.isSelected(1)" -->
+				<!-- ng-class="{ active:tab == 1 }" - ng-class="{ active:panel.isSelected(1) }" -->
+				<section ng-controller="PanelController as panel"> 
+					<ul class="nav nav-pills">
+						<!-- sending an object inside ng-class - name of class the express if true then set the class -->
+						<li ng-class="{ active:panel.isSelected(1) }"><a href ng-click="panel.selectTab(1)">Description</a></li> <!-- ng-click takes an expression to evaluate -->
+						<li ng-class="{ active:panel.isSelected(2) }"><a href ng-click="panel.selectTab(2)">Specification</a></li>
+						<li ng-class="{ active:panel.isSelected(3) }"><a href ng-click="panel.selectTab(3)">Reviews</a></li>
+					</ul>
+					<!-- {{tab}} 2 way data binding -->
+					<div ng-show="panel.isSelected(1)" class="panel">
+						<h4>Description</h4>
+						<p>{{product.description}}</p>
+					</div>
+					<div ng-show="panel.isSelected(2)" class="panel">
+						<h4>Specification</h4>
+						<blockquote>None yet</blockquote>
+					</div>
+					<div ng-show="panel.isSelected(3)" class="panel">
+						<h4>Reviews</h4>
+						<blockquote>None yet</blockquote>
+					</div>
+				</section>
+			</li>
+		</ul>
 		
 		<script type="text/javascript" src="scripts/angular.js"></script>
 		<script type="text/javascript" src="scripts/app.js"></script>
