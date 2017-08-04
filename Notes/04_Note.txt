@@ -1,0 +1,38 @@
+Directive:
+
+using ng-include
+<h3 ng-include="'product-title.html'"></h3>
+
+But a better way in to use custom directive
+Custom Directive
+<product-title></product-title>
+
+why write a directive
+Allow you to write HTML that expresses the behaviour of you application
+
+Different type of directives:
+1. Template expanding directives are the simplest onces
+- define a custom tag or attribute that is expanded or replaced - like ng-include
+- can include controller logic if needed
+
+Directives can also be user for:
+- Expressing complex UI
+- Calling events and registering event handlers
+- Reusing common component
+
+<product-title></product-title>
+
+add.directive('productTitle', function(){
+	return {
+		restrict: 'E'
+		templateUrl: 'product-title.html'
+	};
+});
+
+
+Directive can be of two types:
+1. Element Directive
+<product-title></product-title>
+
+2. Attribute Directive
+<h3 product-title></h3>
