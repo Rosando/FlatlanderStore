@@ -1,0 +1,8 @@
+ng-repeat syntax
+
+ng-options="stars for stars in [5,4,3,2,1]
+
+input
+type="email"
+type="url"
+type="number" min=1 max=10

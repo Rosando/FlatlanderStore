@@ -25,6 +25,15 @@
 		};
 	});
 	
+	app.controller("ReviewController", function(){
+		this.review = {};
+		
+		this.addReview = function(product){
+			product.reviews.push(this.review);
+			this.review = {};
+		};
+	});
+	
 	var gems = [
 		{
 			name: "Dodecahedron",
@@ -36,7 +45,19 @@
 				"content/images/gem1.jpg",
 				"content/images/gem1a.jpg"
 			],
-			description: "some description on gem 1"
+			description: "some description on gem 1",
+			reviews: [
+				{
+					stars: 5, 
+					body: "I love this gem",
+					author: "joe@thomas.com"
+				},
+				{
+					stars: 1,
+					body: "This product sucks",
+					author: "tim@hater.com"
+				}
+			]
 		},
 		{
 			name: "Pentagonal Gem",
@@ -47,7 +68,19 @@
 				"content/images/gem3.jpg",
 				"content/images/gem3a.jpg"
 			],
-			description: "some description on gem 2"
+			description: "some description on gem 2",
+			reviews: [
+				{
+					stars: 5, 
+					body: "I love this gem",
+					author: "joe@thomas.com"
+				},
+				{
+					stars: 1,
+					body: "This product sucks",
+					author: "tim@hater.com"
+				}
+			]
 		}
 	];
 })();
